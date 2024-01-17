@@ -1,4 +1,45 @@
-# Manual PIA VPN Connections
+# How To Use This Version:
+
+Assumptions:
+- Private Internet Access Service:
+  - [Affiliate Link with Current Discount Applied](https://www.privateinternetaccess.com/pages/buy-a-vpn/1218buyavpn?invite=U2FsdGVkX1-yHEG5WNyEvhOnkw61Cmj7PZrmc3-LbK0%2CKB6rXG1S7uiZdx1tCxFpz_5XEpE) - if you feel this has helped you.
+- PIA GUI App does not run, due to the atomic nature/permissions of uBlue/Silverblue.
+- The user may want to (or needs to):
+  - Run an incredibly affordable and discreet VPN.
+  - Uses dedicated/static IP (IPv4) service
+  - Needs a double-VPN, like in these situations:
+    - Uses dedicated/static IP (IPv4) service for whitelisting AND needs to then run another VPN on top to authenticate to a remote server.
+    - Just wants added privacy.
+
+Initialize the Script (IMHO, use `BASH` or `just` to make its use easier):
+
+- Assumes user would use the following:
+  - Environment variables (or variables in a script): PIA_USER, PIA_PASS, and DIP_TOKEN (optional - if using the dedicated/static service)
+
+## Tested Setups:
+- Tested options for PIA_DNS:
+  - true
+  - false
+- Tested options for VPN_PROTOCOL:
+  - openvpn_tcp_standard
+  - wireguard
+
+```bash
+  #!/usr/bin/env bash
+  cd $HOME/pia-manual-connections
+   
+  sudo PIA_USER=$PIA_USER \
+  PIA_PASS=$PIA_PASS \
+  DIP_TOKEN=$DIP_TOKEN \
+  PIA_DNS=true \
+  PIA_PF=false \
+  AUTOCONNECT=true \
+  VPN_PROTOCOL=openvpn_tcp_standard \
+  DISABLE_IPV6=true ./run_setup.sh  
+
+```
+
+# Original Documentation from PIA-FOSS: Manual PIA VPN Connections
 
 This repository contains documentation on how to create native WireGuard and OpenVPN connections, and also on how to enable Port Forwarding in case you require this feature. You will find a lot of information below. However if you prefer quick test, here is the __TL/DR__:
 
